@@ -1,0 +1,126 @@
+// Является ли число составным
+def IsComposite(number) => ((number % 2 == 0) && (number != 2))
+
+// Являются ли заданные числа взаимно простыми
+def IsCoprime(a, b)
+{
+    return a == b 
+           ? a == 1 
+           : a > b 
+                ? IsCoprime(a - b, b) 
+                : IsCoprime(b - a, a)
+}
+
+// Алгоритм Евклида для нахождения НОД
+def GCD(a, b) {
+		if (a == 0) return b
+		else {
+               using "math"
+			let min = min(a,b)
+			let max = max(a,b)
+			return GCD(max % min, min)
+         }
+}
+
+// Сортировка Шелла
+def shell(arr) {
+    let step = length(arr) / 2
+    let temp = 0
+    
+    while(step > 0) {
+        for (let i = step; i < length(arr); i = ++i) {
+           let j = i
+           while ((j >= step) && (arr[j - step] > arr[j])) {
+               temp = arr[j]
+               arr[j] = arr[j-step]
+               arr[j-step] = temp
+
+               j = j - step
+           }
+       }
+       step = step / 2
+    }
+   return arr
+}
+
+// Шейкерная сортировка
+def cocktail(arr) {
+   let len = length(arr)
+   let left = 0
+   let right = len - 1
+   let temp = 0
+   
+   while (left < right) {
+       for (i = right; i > left; i = --i) {
+           if (arr[i-1] > arr[i]) {
+                temp = arr[i]
+                arr[i] = arr[i-1]
+                arr[i-1] = temp
+           }
+       }
+
+       for (i = left + 1; i < right; i = ++i) {
+           if (arr[i] > arr[i+1]) {
+                temp = arr[i+1]
+                arr[i+1] = arr[i]
+                arr[i] = temp
+           }
+       }
+      right = --right
+      left = ++left
+   }
+  return arr
+}
+
+// Сортировка вставками
+def insertion(arr) {
+    let temp = 0
+    for (let i = 0; i < length(arr); i = ++i) {
+       temp = arr[i]
+       let j = i
+       
+       while (j > 0) && (temp < arr[j - 1]) {
+          arr[j]= arr[j-1]
+          j = --j
+       }
+       arr[j] = temp
+    }
+   return arr
+}
+// Перемешивание массива
+def shuffle(arr) {
+   let n = length(arr) 
+   let temp = 0
+
+   for (let i = 0; i < n; i = ++i) {
+       let r = rand(n)
+       temp = arr[i]
+       arr[i] = arr[r]
+       arr[r] = temp
+   }
+  return arr
+}
+
+def gnomeSort(arr) {    
+	let n = length(arr)
+	i = 1
+	j = 2
+ 	
+	while(i < n) {    
+		if (arr[i-1] < arr[i]) {    
+			i = j
+			j = ++j
+		} else {    
+			let temp = arr [i-1]
+			arr [i-1] = arr [i]
+			arr [i] = temp
+
+			i = --i
+			if (i == 0) {    
+				i = j
+				j = ++j
+			}
+		}
+	}
+  return arr
+}

@@ -1,0 +1,24 @@
+def celcius_to_farenheit(c) => c * 1.8 + 32
+def celcius_to_kelvin(c) => c + 273.15
+def celcius_to_reamur(c) => c * 0.8
+def celcius_to_rankine(c) => c * 1.8 + 491.67
+
+def farenheit_to_celcius(f) => (f - 32)/1.8
+def farenheit_to_kelvin(f) => (f + 459.67)/1.8
+def farenheit_to_reamur(f) => (f - 32)/2.25
+def farenheit_to_rankine(f) => f + 459.67
+
+def kelvin_to_celcius(k) => k - 273.15
+def kelvin_to_farenheit(k) => k * 1.8 - 459.67
+def kelvin_to_reamur(k) => (k - 273.15)*0.8
+def kelvin_to_rankine(k) => k * 1.8
+
+def reamur_to_celcius(r) => r / 0.8
+def reamur_to_farenheit(r) => r * 2.25 + 32
+def reamur_to_kelvin(r) => r / 0.8 + 273.15
+def reamur_to_rankine(r) => r * 2.25 + 491.67
+
+def rankine_to_celcius(r) => r / 1.8 + 273.15
+def rankine_to_farenheit(r) => r - 459.67
+def rankine_to_kelvin(r) => r / 1.8
+def rankine_to_reamur(r) => (r / 1.8 + 273.15)*0.8

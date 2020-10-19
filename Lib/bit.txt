@@ -1,0 +1,174 @@
+def rol(number, len) {
+   if ((number % 2) == 1 ) {
+        	return ((number << len)|0x80)
+    	}
+    	return number << len
+}
+
+def ror(number, len) {
+   if ((number % 2) == 1 ) {
+        	return ((number >> len)|0x80)
+    	}
+    	return number >> len
+}
+
+def sal(number, len) => number << len
+
+def pierce_arrow(a,b) => ~(a | b)
+
+const MIN_INDEX_BIT = 0
+const MAX_INDEX_BYTE_BIT = 8
+const MAX_INDEX_INT16_BIT = 16
+const MAX_INDEX_INT32_BIT = 32
+const MAX_INDEX_INT64_BIT = 64
+
+def getBit(b, index) {
+    => (b & (1 << index)) != 0
+}
+
+// Возвращает все биты из байта
+def printbits_byte(num) {
+   for (let i = 0; i < MAX_INDEX_BYTE_BIT; i = ++i) {
+       print getBit(num, i)
+       print " "
+   }
+}
+// Возвращает все биты числа int16
+def printbits_int16(num) {
+    for (let i = 0; i < MAX_INDEX_INT16_BIT; i = ++i) {
+       print getBit(num, i)
+       print " "
+   }
+}
+// Возвращает все биты числа int32
+def printbits_int32(num) {
+    for (let i = 0; i < MAX_INDEX_INT32_BIT; i = ++i) {
+       print getBit(num, i)
+       print " "
+   }
+}
+// Возвращает все биты числа int64
+def printbits_int64(num) {
+    for (let i = 0; i < MAX_INDEX_INT64_BIT; i = ++i) {
+       print getBit(num, i)
+       print " "
+   }
+}
+// Возвращает все биты символа
+def printbits_char(symbol) {
+    byte_value = bytesFromString(symbol)
+    printbits_byte(byte_value[0])
+}
+// Возвращает байт который соответствует указанному символу
+def byteFromChar(symbol) {
+    byte_value = bytesFromString(symbol)
+    print byte_value[0]
+}
+
+def setBit(b, index, bit_value) {
+   let tmpval = 1
+   tmpval = (byte)(tmpval << index)
+   b = (byte)(b & (~tmpval)
+
+   if (bit_value) {
+        b = (byte)(b | (tmpval))
+   }
+  return b
+}
+
+// Реверс битов
+def reverseBytes(number) {
+   let result = 0
+
+    for (let i = 0; i < MAX_INDEX_BYTE_BIT; i = ++i) {
+         result = (byte)(result << 1)
+         	
+         if (((number >> i) & 1) > 0) {
+             result = (byte)(result | 1)
+         }
+    }
+   return (byte) result
+}
+
+// Возвращает кол-во бит которые надо изменить, чтобы из числа a получить число b
+def bitSwapRequired(a,b) {
+   let count = 0
+   for (let c = a ^ b; c != 0; c = c & (c - 1)) {
+      count = ++count
+   }
+   return count
+}
+
+// Возвращает кол-во бит которые используются в бинарном представлении числа
+def bitLength(number) {
+    let bitsCounter = 0
+
+    while ((1 << bitsCounter) <= number) {
+        bitsCounter = ++bitsCounter
+    }
+   return bitsCounter
+}
+// Возвращает число int16 из 2-х байтов
+def toInt16(high, low) {
+    let res = high << 8
+    res = res | (low & 0xFF)
+    return res & 0xFFFF
+}
+
+// Обнуление указанного бита в числе
+def setZeroBit(num, bit) => num & ~(1 << bit) 
+
+// Инвертирование бита
+def invertBit(num, bit) => num ^ (1 << bit)
+
+// Проверяет установлено ли значение указанного бита в 0
+def isBit0(num, bit) => (1 << bit)& num == 0
+
+// Округление вниз 
+def bround(num) => num >> 0
+
+// Получение самого правого включенного бита
+def rightGetBit1(num) => num & (-num)
+// Получение самого правого выключенного бита
+def rightGetBit0(num) => ~num & (num+1)
+
+// Меняет смежные биты числа
+def changeAdjacentBits(n) {
+=> ((n & 10101010) >> 1) | ((n & 01010101) << 1)
+}
+
+// Округление вверх до следующей ближайшей степени 2
+def roundup(v) {
+    v = --v
+    v = v | (v >> 1)
+    v = v | (v >> 2)
+    v = v | (v >> 4)
+    v = v | (v >> 8)
+    v = v | (v >> 16)
+    return ++v
+}
+
+// Возвращает число int64 из указанного массива байтов
+def int64FromBytes(bytes) {
+   return (long)bytes[0] + ((long)bytes[1] << 8) + ((long)bytes[2] << 16) + ((long)bytes[3] << 24) + 
+   ((long)bytes[4] << 32) + ((long)bytes[5] << 40) + ((long)bytes[6] << 48) + ((long)bytes[7] << 56)
+}
+
+// Возвращает число int32 из указанного массива байтов
+def int32FromBytes(bytes) {
+   return (int)bytes[0] + ((int)bytes[1] << 8) + ((int)bytes[2] << 16) + ((int)bytes[3] << 24)
+}
+// Возвращает число int16 из указанного массива байтов
+def int16FromBytes(bytes) {
+   return (int)bytes[0] + ((int)bytes[1] << 8) 
+}
+
+// Вычисляет кол-во единичных битов в числе
+def countBits1(num) {
+    let count = 0
+    while(num) {
+       num = num & (num - 1)
+       count = ++count
+    }
+  return count
+}

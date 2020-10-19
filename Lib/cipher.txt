@@ -1,0 +1,30 @@
+// Алгоритм шифрования Атбаш
+let alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+def @reverse(inputText) {
+    let reversedText = ""
+
+    let s = 0
+    foreach (s : inputText) {
+        reversedText = s + reversedText
+    }
+    return reversedText
+}
+
+def EncryptDecryptAtbash(text, symbols, cipher) {
+    text = toArray(lower(text))
+    cipher = toArray(cipher)
+    let outputText = ""
+   
+    for (let i = 0; i < length(text); i = ++i) {
+        let index = indexOf(symbols, text[i])
+        if (index >= 0) {
+            outputText = outputText + (string) cipher[index]
+        }
+    }
+  => outputText
+}
+
+def EncryptAtbash(plainText) => EncryptDecryptAtbash(plainText, alphabet, @reverse(alphabet))
+
+def DecryptAtbash(encryptedText) => EncryptDecryptAtbash(encryptedText, @reverse(alphabet), alphabet)

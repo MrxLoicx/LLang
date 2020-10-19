@@ -1,0 +1,35 @@
+// Оптимизированное сложение целых чисел
+def addo(x,y) => (x | y) + (x & y)
+// Оптимизированное вычитание целых чисел
+def subo(x,y) => x + ~y + 1
+// Эквивалентность 2-х выражений
+def equivalence(x,y) => ~(x ^ y)
+
+def xor(x,y) => (x | y) - (x & y)
+def or(x,y) => (x & y) + y
+def and(x,y) => (~x | y) - ~x
+
+// Оптимизированное умножение целых чисел
+def mulo(x,y) {
+   let res = 0
+   for(let i = 0; i < y; i = ++i) res = res + x
+   return res
+}
+// Оптимизированное деление целых чисел(без остатка)
+def divo(x,y) {
+   let res = 0
+   while (x >= y) {
+      res = ++res
+      x = x - y
+   }
+  return res
+}
+
+// Код Грея
+def grey(n) => n ^ (n >> 1)
+// Обратный код Грея
+def rev_grey(grey) {
+    let n = 0
+    for(n = 0; grey > 0; grey = grey >> 1) n = n ^ grey
+    return n
+}

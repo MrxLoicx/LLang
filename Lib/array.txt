@@ -1,0 +1,19 @@
+// ѕроверка массива на уникальность значений(дл€ всех значений)
+def isUnique(A) {   
+    let n = length(A)
+    for (let i = 0; i < n-1; i = ++i) { 
+        for (let j = i+1; j < n; j = ++j) { 
+          if (A[i] == A[j]) return false 
+        }
+    }
+   return true
+}
+
+// ѕроверка массива на уникальность(лучше использовать с сортированным массивом)
+def isUniqueSort(A) {
+    let n = length(A) 
+    for (let i = 1; i < n; i = ++i) { 
+       if (A[i-1] == A[i]) return false
+    } 
+    return true
+}

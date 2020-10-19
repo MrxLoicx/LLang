@@ -1,0 +1,34 @@
+def IsUpper(str) {
+   let strUpper = upper(str)
+   return strUpper == str
+}
+
+def IsLower(str) { 
+  return IsUpper(str) == 0
+}
+
+// Удаляет все переводы строк(\n)
+def chomp(str) {
+   return replace(str, "\n", "")
+}
+
+// Альтернатива тернарному оператору
+def IfThen(condition, ifTrue, ifFalse) {
+   return (condition) ? ifTrue : ifFalse 
+}
+
+// Преобразует строку в double
+def atof(x) => (double) x
+// Преобразует строку в int
+def atoi(x) => (int) x
+// Преобразует строку в long
+def atol(x) => (long) x
+
+// Является ли символ двоичным числом
+def isbdigit(x) { 
+   => indexOf(["0","1"], x) != -1
+}
+def gethexval(i) {
+  if (i < 10) return (char) (i + 48)
+  return (char) (i - 10 + 65)
+}
