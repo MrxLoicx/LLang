@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<Templates>
+	<CSharp>
+using System;
+using System.Text.RegularExpressions;
+
+public class Example
+{
+    public static void Main()
+    {
+        string pattern = @"\d+";
+        string input = @"Information";
+        RegexOptions options = RegexOptions.Multiline;
+        
+        foreach (Match m in Regex.Matches(input, pattern, options))
+        {
+            Console.WriteLine("'{0}' found at index {1}.", m.Value, m.Index);
+        }
+    }
+}
+</CSharp>
+<Golang>
+package main
+
+import (
+    "regexp"
+    "fmt"
+)
+
+func main() {
+    var re = regexp.MustCompile(`(?m)\d+`)
+    var str = `Information`
+    
+    for i, match := range re.FindAllString(str, -1) {
+        fmt.Println(match, "found at index", i)
+    }
+}
+</Golang>
+<PHP>
+$re = '/\d+/m';
+$str = 'Information';
+
+preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
+
+// Print the entire match result
+var_dump($matches);
+</PHP>
+<Ruby>
+re = /\d+/m
+str = 'Information'
+
+# Print the match result
+str.scan(re) do |match|
+    puts match.to_s
+end
+</Ruby>
+<Python>
+import re
+
+regex = r"\d+"
+test_str = "Information"
+
+matches = re.finditer(regex, test_str, re.MULTILINE)
+
+for matchNum, match in enumerate(matches, start=1):
+    
+    print ("Match {matchNum} was found at {start}-{end}: {match}".format(matchNum = matchNum, start = match.start(), end = match.end(), match = match.group()))
+    
+    for groupNum in range(0, len(match.groups())):
+        groupNum = groupNum + 1
+        
+        print ("Group {groupNum} found at {start}-{end}: {group}".format(groupNum = groupNum, start = match.start(groupNum), end = match.end(groupNum), group = match.group(groupNum)))
+</Python>
+<Rust>
+extern crate regex;
+use regex::Regex;
+
+fn main() {
+  let regex = Regex::new(r"(?m)\d+").unwrap();
+  let string = "Information";
+  let result = regex.find_iter(string);
+  
+  for mat in result {
+    println!("{:?}", mat);
+  }
+}
+</Rust>
+</Templates>
